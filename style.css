@@ -43,7 +43,7 @@
 .divchange input{
     height:30px;
     width: 150px;
-    margin-left:25px;
+    margin-left: 25px;
     border-radius: 6px;
     border: solid 1px rgb(74, 219, 212);
 }
@@ -53,4 +53,5 @@
 .whole{
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
