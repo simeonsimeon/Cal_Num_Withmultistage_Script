@@ -1,134 +1,69 @@
-let btn=document.getElementById("btn");
-let done=document.getElementById("done");
-
-function rg(easy1){
-    return parseInt(Math.random()*easy1);
+let whole=document.getElementById("whole");
+function mt(range){
+    let random=Math.ceil(Math.random()*range);
+    return random;
 }
-function symbol(easy){
-    switch(easy){
+function Symbol(operation){
+    switch(operation){
         case "add":
             return "+"
-         case "sub":
-            return "-"
-        case "multi":
-            return "*"
-            case "divide":
-            return "/"
+            break;
+            case "sub":
+                return "-"
+                break;
+                case "multi":
+                    return "*"
+                    break;
+                    case "divide":
+                        return "/"
+                        break;
     }
 }
 
-
-
-var whole=document.createElement("div");
-    whole.className+="whole";
-    document.body.appendChild(whole);
-function create(num1,num2,operation){
-    var divchange=document.createElement("div");
-    divchange.className+="divchange";
-    divchange.setAttribute("class","div")
-    var h1=document.createElement("h2");
-    h1.setAttribute("class","no1")
-    h1.innerHTML=num1;
-    var h2=document.createElement("h2");
-    h2.setAttribute("class","operation")
-    h2.innerHTML=symbol(operation)
-    var h3=document.createElement("h2");
-    h3.setAttribute("class","no2")
-    h3.innerHTML=num2;
-   var input=document.createElement("input");
-    input.setAttribute("type","answer")
-   input.setAttribute("class","answer");
-    // input.setAttribute("class","answer");
-    // input.setAttribute("type","txt");
-    divchange.appendChild(h1);
-    divchange.appendChild(h2);
-    divchange.appendChild(h3);
-    divchange.appendChild(input);
-    whole.appendChild(divchange);
-    ha=input.value;
+function create(random1,random2,operation){
+    let div=document.createElement("div");
+    div.setAttribute("class","promblem");
     
-    bg=divchange;
-    // ldf(ha)
+    let h2=document.createElement("h2");
+    h2.setAttribute("class","h2");
+    h2.innerText=random1;
+    let operator=document.createElement("h2");
+    operator.setAttribute("class","operation");
+    operator.innerText=Symbol(operation);
+    let h3=document.createElement("h2");
+    h3.setAttribute("class","h3");
+    h3.innerText=random2;
+    let input=document.createElement("input");
+    input.setAttribute("class","answer");
+    input.setAttribute("type","answer");
+    div.append(h2);
+    div.append(operator);
+    div.append(h3);
+    div.append(input);
+    whole.append(div);
+
+
+}
+function stage1(){
+let range=document.getElementById("range").value,
+operation=document.getElementById("operation").value,random1,random2;
+for(let i=0;i<range;i++){
+      random1=mt(range);
+      random2=mt(range);
+      create(random1,random2,operation);
+      Symbol(operation)
 }
 
+}
+function stage2(){
+    let promblem=document.getElementsByClassName("promblem"),firsth3,opera,secondh3;
+    for(let i=0;i<promblem.length;i++){
+      firsth3=promblem.getElementsByClassName("h2");
+      console.log(firsth3);
 
-
-
-function store(raw1,raw2,op){
-
-    if(op=="add"){
-      add=raw1+raw2;
-      arr.push(add);
-     
     }
 }
-    function click(){
-        var range1=document.getElementById("range").value;
-        var operation=document.getElementById("operation").value;
-        var range=parseInt(range1);
-        var random1;
-        var random2;
-        if(operation!=="divide"){
-        for(let i=0;i<range;i++){
-             random1=rg(range);
-             random2=rg(range);
-             create(random2,random1,operation);
-              
-            }
-        }else{
-            for(let i=0;i<range;i++){
-                random1=rg(range);
-                random2=rg(range);
-                if((random1%random2==0)&&(random1&&random2!=0)&&(random2<=random1)){
-                    create(random1,random2,operation);
-                }
-               }
-        }
-        }
-     btn.addEventListener("click",click);
-   function stage(){
-          let you=document.getElementsByClassName("div"),promblem,operationelm,numb1,numb2,operationtype;
-let no1value,no2value,act,actvalue,a=0;
+let update=document.getElementById("update").addEventListener("click",stage1);
+let finished=document.getElementById("finish").addEventListener("click",stage2)
 
-
-          
-          for(let i=0;i<you.length;i++){
-                  promblem=you[i];
-                  
-                  operationelm=promblem.getElementsByClassName("operation")[0];
-                  operationtype=operationelm.innerHTML;
-
-                  numb1=promblem.getElementsByClassName("no1")[0];
-                  no1value=parseInt(numb1.innerHTML);
-                  numb2=promblem.getElementsByClassName("no2")[0];
-                  no2value=parseInt(numb2.innerHTML);
-                  if(operationtype=="+"){
-                      var answer=no1value+no2value;
-                    //   console.log(answer)
-                  }else if(operationtype=="-"){
-                    var answer=no1value-no2value;
-                  }else if(operationtype=="*"){
-                    var answer=no1value*no2value;
-                  }
-
-
-                  act=promblem.getElementsByClassName("answer")[0];
-                  console.log(act);
-                  actvalue=act.value;
-                  console.log(actvalue);
-                
-                  if(answer==actvalue){
-                      a++
-                  }
-
-                
-
-
-
-          }
-          alert(a)
-   }
-   done.addEventListener("click",function(){
-    stage()
-   })
 
